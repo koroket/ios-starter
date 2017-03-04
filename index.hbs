@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>iOS Guide</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="text/javascript">
+		//First thing first make sure it's SSL
+		if (window.location.host == "xxxx.com" && window.location.protocol != "https:") {
+		  window.location.protocol = "https:"
+		}
+		</script>
+
+    <link rel="stylesheet" href="style.css"> <!-- Resource style -->
+    <script src="lib/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+
+<div id="section-container">
+	{{#each sections}}
+	<div class="section">
+		<div class="section-heading">
+			<h4 class="title"><b>{{this.title}}</b></h4> 
+			<h5 class="subtitle"><i>({{this.subtitle}})</i></h5>
+		</div>
+		<div class="section-collapse">
+			<div class="item-container">
+				<div class="item-navigation">
+					<select class="item-selector">
+					<option class="item-title" value="">Select an item</option>
+					{{#each this.items}}
+					<option class="item-title" value="{{this.key}}">{{this.title}}</option>
+					{{/each}}
+					</select>
+				</div>
+				{{#each this.items}}
+				<div class="item" value="{{this.key}}">
+					<div class="steps-container">
+						{{#each this.steps}}
+						<div class="step">
+							<div class="step-title">{{this.title}}</div>
+							<div>
+								{{{this.body}}}
+							</div>
+						</div>
+						{{/each}}
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+	{{/each}}
+</div>
+
+<script type="text/javascript" src="scripts.js"></script>
+</body>
+</html>

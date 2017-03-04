@@ -1,0 +1,125 @@
+<html>
+<head>
+	<title>iOS Guide</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="text/javascript">
+		//First thing first make sure it's SSL
+		if (window.location.host == "xxxx.com" && window.location.protocol != "https:") {
+		  window.location.protocol = "https:"
+		}
+		</script>
+
+    <link rel="stylesheet" href="style.css"> <!-- Resource style -->
+    <script src="lib/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+
+<div id="section-container">
+	<div class="section">
+		<div class="section-heading">
+			<h4 class="title"><b>Available technology on the phone</b></h4> 
+			<h5 class="subtitle"><i>(Device Hardware)</i></h5>
+		</div>
+		<div class="section-collapse">
+			<div class="item-container">
+				<div class="item-navigation">
+					<select class="item-selector">
+					<option class="item-title" value="">Select an item</option>
+					<option class="item-title" value="loc">GPS/Location</option>
+					<option class="item-title" value="camera">Camera</option>
+					<option class="item-title" value="storage">Storage</option>
+					<option class="item-title" value="accelerometer">Accelerometer</option>
+					<option class="item-title" value="gesture">Gesture Recognizition</option>
+					</select>
+				</div>
+				<div class="item" value="loc">
+					<div class="steps-container">
+						<div class="step">
+							<div class="step-title">Adding the library</div>
+							<div>
+								<code>CoreLocation</code> is the built in library to access the user's location. Go ahead and add <code>import CoreLocation</code> to your swift file.
+							</div>
+						</div>
+						<div class="step">
+							<div class="step-title">Creating a Delegate</div>
+							<div>
+								By taking a <code>Class</code> and making it a <code>CLLocationManagerDelegate</code> your <code>Class</code> will be able to recieve specific function calls that will provide you with the location information you want. Outside of the <code>class ViewController: UIViewController {}</code> add <code>extension ViewController: CLLocationManagerDelegate { ... }</code>. If you define <code>func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: <code>CLLocation</code>) {...}</code> this function will be called automatically when the users location updates.
+							</div>
+						</div>
+						<div class="step">
+							<div class="step-title">Updating info.plist</div>
+							<div>
+								If you've used apps like Uber or Lyft before you might remember seeing 'Allow X to access your location'. Well, turns out this is required for your application to access this information. Go to info.plist in the project navigator on the left. 'Right Click' then 'Add Row'. Double-click to modify the value. Enter what you want it to display when location access is requested. 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="item" value="camera">
+					<div class="steps-container">
+					</div>
+				</div>
+				<div class="item" value="storage">
+					<div class="steps-container">
+					</div>
+				</div>
+				<div class="item" value="accelerometer">
+					<div class="steps-container">
+					</div>
+				</div>
+				<div class="item" value="gesture">
+					<div class="steps-container">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="section-heading">
+			<h4 class="title"><b>User Accounts</b></h4> 
+			<h5 class="subtitle"><i>(Authentication)</i></h5>
+		</div>
+		<div class="section-collapse">
+			<div class="item-container">
+				<div class="item-navigation">
+					<select class="item-selector">
+					<option class="item-title" value="">Select an item</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="section-heading">
+			<h4 class="title"><b>Making your app beautiful</b></h4> 
+			<h5 class="subtitle"><i>(UI)</i></h5>
+		</div>
+		<div class="section-collapse">
+			<div class="item-container">
+				<div class="item-navigation">
+					<select class="item-selector">
+					<option class="item-title" value="">Select an item</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="section-heading">
+			<h4 class="title"><b>Other people&#x27;s code/software to make your life easier</b></h4> 
+			<h5 class="subtitle"><i>(SDK/API/Frameworks)</i></h5>
+		</div>
+		<div class="section-collapse">
+			<div class="item-container">
+				<div class="item-navigation">
+					<select class="item-selector">
+					<option class="item-title" value="">Select an item</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="scripts.js"></script>
+</body>
+</html>
