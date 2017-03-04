@@ -12,8 +12,10 @@ function loadItem (itemName) {
 	var item = require(itemsDirectory + itemName);
 	item.steps.forEach(function(step){
 		var body = step['body'];
-		body = replaceAll(body,'[',"<code>");
-		body = replaceAll(body,']',"</code>");
+		body = replaceAll(body,'$$[',"<pre class='brush: swift;'>");
+		body = replaceAll(body,']$$',"</pre>");
+		body = replaceAll(body,'$$i[',"<div class='inline'><pre class='brush: swift;gutter: false;'>");
+		body = replaceAll(body,']i$$',"</pre></div>");
 		step['body'] = body;
 	});
 	return item;
