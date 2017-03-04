@@ -35,7 +35,7 @@
 					<select class="item-selector">
 					<option class="item-title" value="">Select an item</option>
 					<option class="item-title" value="loc">GPS/Location</option>
-					<option class="item-title" value="camera">Camera</option>
+					<option class="item-title" value="photo">Photo Library</option>
 					<option class="item-title" value="storage">Storage</option>
 					<option class="item-title" value="accelerometer">Accelerometer</option>
 					<option class="item-title" value="gesture">Gesture Recognizition</option>
@@ -60,7 +60,7 @@ This function will be called automatically when the users location updates.
 						<div class="step">
 							<div class="step-title">Updating info.plist</div>
 							<div>
-								If you've used apps like Uber or Lyft before you might remember seeing 'Allow X to access your location'. Well, turns out this is required for your application to access this information. Go to info.plist in the project navigator on the left. 'Right Click' then 'Add Row'. Double-click to modify the value. Enter what you want it to display when location access is requested. 
+								If you've used apps like Uber or Lyft before you might remember seeing 'Allow X to access your location'. Well, turns out this is required for your application to access this information. Go to info.plist in the project navigator on the left. 'Right Click' then 'Add Row'. Double-click to modify the value. For Key enter NSLocationAlwaysUsageDescription. For Value enter what you want it to display when location access is requested. 
 							</div>
 						</div>
 						<div class="step">
@@ -113,8 +113,91 @@ extension ViewController: CLLocationManagerDelegate {
 						</div>
 					</div>
 				</div>
-				<div class="item" value="camera">
+				<div class="item" value="photo">
 					<div class="steps-container">
+						<div class="step">
+							<div class="step-title">Creating a Delegate</div>
+							<div>
+								By taking a <div class='inline'><pre class='brush: swift;gutter: false;'>class</pre></div> and making it a <div class='inline'><pre class='brush: swift;gutter: false;'>UIImagePickerControllerDelegate</pre></div> your <div class='inline'><pre class='brush: swift;gutter: false;'>class</pre></div> will be able to recieve specific function calls that will provide you with the image picking functionality. We also need to make it a <div class='inline'><pre class='brush: swift;gutter: false;'>UINavigationControllerDelegate</pre></div> because the image selection happens at a different view controller. Outside of the <div class='inline'><pre class='brush: swift;gutter: false;'>class ViewController: UIViewController {...}</pre></div> add
+<div class='inline'><pre class='brush: swift;gutter: false;'>extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {...}</pre></div>
+Define delegate functions here. For us, we want to define
+<div class='inline'><pre class='brush: swift;gutter: false;'>func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])</pre></div>
+This function will be called automatically when the users chooses an image.
+							</div>
+						</div>
+						<div class="step">
+							<div class="step-title">Updating info.plist</div>
+							<div>
+								If you've used apps like Google Photos or Facebook before you might remember seeing 'Allow X to access your photos'. Well, turns out this is required for your application to access this information. Go to info.plist in the project navigator on the left. 'Right Click' then 'Add Row'. Double-click to modify the value. For Key enter NSPhotoLibraryUsageDescription. For Value enter what you want it to display when location access is requested. 
+							</div>
+						</div>
+						<div class="step">
+							<div class="step-title">Creating an Image Picker Controller</div>
+							<div>
+								Create a new <div class='inline'><pre class='brush: swift;gutter: false;'>UIImagePickerController</pre></div> with <div class='inline'><pre class='brush: swift;gutter: false;'>UIImagePickerController()</pre></div>. Set the delegate to your ViewController, this means that when image information is obtained the image picker controller will call your ViewController's delegate methods. Set the sourceType to <div class='inline'><pre class='brush: swift;gutter: false;'>UIImagePickerControllerSourceType.photoLibrary</pre></div> , this is just saying you want to choose images from their photo library.Then, use present function of your current view controller to show the image picking screen, something like 
+<div class='inline'><pre class='brush: swift;gutter: false;'>self.present(imagePicker, animated: true, completion: nil)</pre></div>
+To be safe you might want to check if you are able to access their library using 
+<div class='inline'><pre class='brush: swift;gutter: false;'>UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary)</pre></div>
+							</div>
+						</div>
+						<div class="step">
+							<div class="step-title">Final Code</div>
+							<div>
+								<pre class='brush: swift;'>import UIKit
+
+class ViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    //Call this function to begin accessing user's photos
+    func accessPhotosLibrary() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    //You don't need this, this is for me to add a button
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addSelectPhotosButton()
+    }
+    
+    //Don't be lazy go make your own button in storyboard
+    func addSelectPhotosButton() {
+        let photoButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+        photoButton.setTitle("Access Photo", for: .normal)
+        photoButton.setTitleColor(.blue, for: .normal)
+        photoButton.addTarget(self, action: #selector(ViewController.accessPhotosLibrary), for: .touchUpInside)
+        self.view.addSubview(photoButton)
+    }
+
+}
+
+extension ViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            //Do something cool with the image
+            //Don't be lazy go make your own views in storyboard
+            let imageView = UIImageView(frame: self.view.frame)
+            imageView.image = pickedImage
+            self.view.addSubview(imageView)
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+}</pre>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="item" value="storage">

@@ -30,11 +30,9 @@ var _conf = {
 		"title":"Available technology on the phone",
 		"subtitle":"Device Hardware",
 		"items":[
-			loadItem("location")
-		,{
-			"title":"Camera",
-			"key":"camera"
-		},{
+			loadItem("location"),
+			loadItem("photos"),
+		{
 			"title":"Storage",
 			"key":"storage"
 		},{

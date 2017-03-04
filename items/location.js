@@ -1,10 +1,6 @@
-function code(str){
-	return "$$[" + str + "]$$";
-}
-
-function code_i(str){
-	return "$$i[" + str + "]i$$";
-}
+var helpers = require("./_helpers");
+var code = helpers.code,
+	code_i = helpers.code_i;
 
 
 module.exports = {
@@ -29,7 +25,7 @@ module.exports = {
 		"body":"If you've used apps like Uber or Lyft before you might remember seeing 'Allow X to access your location'. " +
 			"Well, turns out this is required for your application to access this information. " +
 			"Go to info.plist in the project navigator on the left. 'Right Click' then 'Add Row'. " +
-			"Double-click to modify the value. Enter what you want it to display when location access is requested. "
+			"Double-click to modify the value. For Key enter NSLocationAlwaysUsageDescription. For Value enter what you want it to display when location access is requested. "
 	},{
 		"title":"Creating a Location Manager",
 		"body":"Create a new "+code_i("CLLocationManager")+" with "+code_i("CLLocationManager()")
