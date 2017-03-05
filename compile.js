@@ -1,7 +1,7 @@
 var Bundlebars = require('bundlebars');
 var fs = require('fs');
 
-var COMPILE_INFO = require('./conf.js');
+var COMPILE_INFO = require('./compile_conf.js');
 
 var bb = new Bundlebars();
 

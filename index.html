@@ -9,16 +9,16 @@
 		}
 		</script>
 
-		<script type="text/javascript" src="highlighter/shCore.js"></script>
-		<script type="text/javascript" src="highlighter/shBrushSwift.js"></script>
-		<link type="text/css" rel="stylesheet" href="highlighter/shCore.css"/>
-		<link type="text/css" rel="stylesheet" href="highlighter/shThemeEclipse.css"/>
+		<script type="text/javascript" src="lib/highlighter/shCore.js"></script>
+		<script type="text/javascript" src="lib/highlighter/shBrushSwift.js"></script>
+		<link type="text/css" rel="stylesheet" href="lib/highlighter/shCore.css"/>
+		<link type="text/css" rel="stylesheet" href="lib/highlighter/shThemeEclipse.css"/>
 		<script type="text/javascript">
 		SyntaxHighlighter.defaults['toolbar'] = false;
 		SyntaxHighlighter.all();
 		</script>
 
-    <link rel="stylesheet" href="style.css"> <!-- Resource style -->
+    <link rel="stylesheet" href="stylesheet/style.css"> <!-- Resource style -->
     <script src="lib/jquery-1.11.0.min.js"></script>
 </head>
 <body>
@@ -81,11 +81,6 @@ class ViewController: UIViewController {
         startLocationManager()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     //Depending on your needs you might want to seperate parts of this function
     func startLocationManager(){
         locationManager = CLLocationManager()
@@ -143,17 +138,6 @@ To be safe you might want to check if you are able to access their library using
 								<pre class='brush: swift;'>import UIKit
 
 class ViewController: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     //Call this function to begin accessing user's photos
     func accessPhotosLibrary() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
@@ -202,6 +186,6 @@ extension ViewController:UIImagePickerControllerDelegate, UINavigationController
 	</div>
 </div>
 
-<script type="text/javascript" src="scripts.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
 </body>
 </html>
