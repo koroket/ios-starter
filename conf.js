@@ -32,28 +32,28 @@ var _conf = {
 		"items":[
 			loadItem("location"),
 			loadItem("photos"),
-		{
-			"title":"Storage",
-			"key":"storage"
-		},{
-			"title":"Accelerometer",
-			"key":"accelerometer"
-		},{
-			"title":"Gesture Recognizition",
-			"key":"gesture"
-		}
+		// {
+		// 	"title":"Storage",
+		// 	"key":"storage"
+		// },{
+		// 	"title":"Accelerometer",
+		// 	"key":"accelerometer"
+		// },{
+		// 	"title":"Gesture Recognizition",
+		// 	"key":"gesture"
+		// }
 		]
 	}
-	,{
-		"title":"User Accounts",
-		"subtitle":"Authentication"
-	},{
-		"title":"Making your app beautiful",
-		"subtitle":"UI"
-	},{
-		"title":"Other people's code/software to make your life easier",
-		"subtitle":"SDK/API/Frameworks"
-	}
+	// ,{
+	// 	"title":"User Accounts",
+	// 	"subtitle":"Authentication"
+	// },{
+	// 	"title":"Making your app beautiful",
+	// 	"subtitle":"UI"
+	// },{
+	// 	"title":"Other people's code/software to make your life easier",
+	// 	"subtitle":"SDK/API/Frameworks"
+	// }
 	]
 }
 
